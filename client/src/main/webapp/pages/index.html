@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+  <title>TODO</title>
+  <meta charset="utf-8">
+</head>
+ 
+<body >
+  <ol>
+    <!-- ko foreach: tasks -->
+    <li>
+      <!-- ko ifnot: $root.editing()===$data -->
+      <!-- binde den Zustand der Checkbox an die Task-Property "complete"-->
+      <input type="checkbox" name="" data-bind="checked: complete"/>
+      <span data-bind="text: title"></span>
+      <span class="btns">
+        <button  data-bind="click: $root.editTask"  >Edit</button>
+        <button  data-bind="click: $root.deleteTask" >Delete</button>
+      </span>
+      <!-- /ko -->
+      <!-- ko if: $root.editing()===$data -->
+      <form data-bind="submit: $root.stopEditing">
+        <input type="text" data-bind="textInput: title"/>
+      </form>
+      <!-- /ko -->
+    </li>
+    <!-- /ko -->
+    <li>
+      <form data-bind="submit: addTask">
+        <input type="text" data-bind="textInput: input"/>
+      </form>
+    </li>
+  </ol>
+ 
+</body>
+</html>

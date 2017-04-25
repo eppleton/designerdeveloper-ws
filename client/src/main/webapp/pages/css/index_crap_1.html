@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+  <title>TODO</title>
+  <meta charset="utf-8">
+</head>
+ 
+<body >
+  <ul>
+    <!--iteriere über die Liste der Tasks des TaskListViewModel-->
+    <!-- ko foreach: tasks -->
+    <li>
+      <!--Wenn diese Task nicht gerade editiert wird... -->
+      <!-- ko ifnot: $root.editing()===$data -->
+      <!—… binde den Zustand der Checkbox an die Task-Property "complete"-->
+      <input type="checkbox" name="" data-bind="checked: complete"/>
+      <!--Binde den Text der Span an die Task-Property "title"-->
+      <span data-bind="text: title"></span>
+      <span class="btns">
+        <!--Bei Klick rufe die Methode editTask auf-->
+        <button  data-bind="click: $root.editTask"  >Edit</button>
+        <!--Bei Klick rufe die Methode deleteTask auf-->
+        <button  data-bind="click: $root.deleteTask" >Delete</button>
+      </span>
+      <!-- /ko -->
+      <!--Wenn diese Task gerade editiert wird, zeige ein Text Input an -->
+      <!-- ko if: $root.editing()===$data -->
+      <!-- Bei submit (Enter) rufe die Methode stopEditing auf-->
+      <form data-bind="submit: $root.stopEditing">
+        <!--Binde den Eingabetext an die Property title-->
+        <input type="text" data-bind="textInput: title"/>
+      </form>
+      <!-- /ko -->
+    </li>
+    <!-- /ko -->
+    <li>
+      <!-- Bei submit (Enter) rufe die Methode addTask auf-->
+      <form data-bind="submit: addTask">
+        <!--Binde den Eingabetext bidirektional an die Property "input"-->
+        <input type="text" data-bind="textInput: input"/>
+      </form>
+    </li>
+  </ul>
+ 
+</body>
+</html>
