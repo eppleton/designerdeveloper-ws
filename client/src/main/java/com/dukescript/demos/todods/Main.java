@@ -9,7 +9,7 @@ public final class Main {
 
     public static void main(String... args) throws Exception {
         BrowserBuilder.newBrowser().
-                loadPage("pages/index_1.html").
+                loadPage("pages/index.html").
                 loadClass(Main.class).
                 invoke("onPageLoad", args).
                 showAndWait();
